@@ -1,0 +1,49 @@
+"""
+@author: Kenneth Comollo
+"""
+#Created to run on Ubuntu
+#Returns a List of Files in a Path Within Time Frame (mtime)  
+#Thank you to tnkepp on stackoverflow for helping
+
+import os, datetime
+
+# define epoch time
+t0 = datetime.datetime.utcfromtimestamp(0)
+
+def get_search_startTime():
+    
+    startTime = input("Please enter start time of search: MM-DD-YY HH:MM\n")
+    try:
+        startTime = (datetime.datetime.strptime(startTime, "%m-%d-%y %H:%M") - t0).total_seconds()
+    except ValueError:
+            raise ValueError("Incorrect format - should be MM-DD-YY HH:MM")
+    return startTime
+    
+
+def get_search_endTime():
+    
+    endTime = input("Please enter end time of search: MM-DD-YY HH:MM\n")
+    try:
+        endTime = (datetime.datetime.strptime(endTime, "%m-%d-%y %H:%M") - t0).total_seconds()
+    except ValueError:
+            raise ValueError("Incorrect format - should be MM-DD-YY HH:MM")
+    return endTime
+
+
+def get_files_in_timeframe(startTime_input, endTime_input):
+
+    path = "/path/to/directory"
+    file_list = []
+    for (dirpath, dirnames, filenames) in os.walk(path):
+        for filename in filenames:
+            search_files = '/'.join([dirpath,filename])
+            searchTimeFrame = os.stat(search_files)[-1]
+            if searchTimeFrame>=startTime_input and searchTimeFrame <=endTime_input:
+                file_list.append(search_files)
+    return file_list
+
+startTime_input = get_search_startTime()
+endTime_input = get_search_endTime()
+files_to_search = get_files_in_timeframe(startTime_input, endTime_input)
+#Below is for testing purposes
+#print(files_to_search)
