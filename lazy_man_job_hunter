@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 17 18:26:55 2018
+@author: Kenneth Comollo
+"""
+import webbrowser
+
+#WORK IN PROGRESS
+#Learning Python and thought I should try to save a few clicks in the process :)
+
+florida = ["Jacksonville"]
+colorado = ["Colorado Springs", "Denver"]
+north_carolina = ["Raleigh-Durham", "Charlotte"]
+dc = ["Washington"] 
+
+for city in colorado:   
+    webbrowser.open('https://www.indeed.com/jobs?q=information+security&l=' + city + '%2C+CO')
+    webbrowser.open('https://www.dice.com/jobs?q=information+security&l=' + city + '%2C+CO')    
+for city in florida:
+    webbrowser.open('https://www.indeed.com/jobs?q=information+security&l=' + city + '%2C+FL')
+    webbrowser.open('https://www.dice.com/jobs?q=information+security&l=' + city + '%2C+FL')
+for city in north_carolina:
+    webbrowser.open('https://www.indeed.com/jobs?q=information+security&l=' + city + '%2C+NC')
+    webbrowser.open('https://www.dice.com/jobs?q=information+security&l=' + city + '%2C+NC')
+for city in dc:
+    webbrowser.open('https://www.indeed.com/jobs?q=information+security&l=' + city + '%2C+DC')
+    webbrowser.open('https://www.dice.com/jobs?q=information+security&l=' + city + '%2C+DC')
+    break
